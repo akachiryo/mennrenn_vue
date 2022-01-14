@@ -19,7 +19,7 @@ class Api::RoomsController < ApplicationController
   end
 
   def create
-    room = currenr_user.rooms.new(room_params)
+    room = current_user.rooms.new(room_params)
     if room.save!
       render json: room, status: :created, serializer: RoomSerializer
     else
@@ -28,13 +28,13 @@ class Api::RoomsController < ApplicationController
   end
 
   def update
-    room = currenr_user.rooms.find(params[:id])
+    room = current_user.rooms.find(params[:id])
     room.update!(room_params)
     render json: room, serializer: RoomSerializer
   end
   
   def destroy
-    room = currenr_user.rooms.find(params[:id])
+    room = current_user.rooms.find(params[:id])
     room.destroy!
     render json: room, serializer: RoomSerializer
   end
