@@ -8,8 +8,8 @@ class Api::RoomsController < ApplicationController
   end
 
   def show
-    room = room.find(params[:id])
-    render json: room, serializer: Roomserializer
+    room = Room.find(params[:id])
+    render json: room, serializer: RoomSerializer
   end
 
   def new
