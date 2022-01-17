@@ -4,4 +4,5 @@ class User < ApplicationRecord
   has_many :rooms        , dependent: :destroy
 
   has_secure_password
+  has_one_attached :image
 end
