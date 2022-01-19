@@ -11,11 +11,6 @@ class Api::UsersController < ApplicationController
     render json: user, status: :created, serializer: UserSerializer
   end
 
-  def update
-    current_user.update(user_update_params)
-    render json: current_user, serializer: UserSerializer
-  end
-
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
