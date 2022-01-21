@@ -1,4 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
+
+  include Rails.application.routes.url_helpers
   attributes :id, 
              :name,
              :email,
@@ -6,8 +8,10 @@ class UserSerializer < ActiveModel::Serializer
              :avatar_url
 
   def avatar_url
-    return nil unless object.avatar.attached?
-
-    Rails.application.routes.url_helpers.rails_blob_path(object.avatar, only_path: true)
+    if object.avatar.attached?
+      url_for(object.avatar)
+    else
+    'https://placehold.jp/300x300.png'
+    end
   end
 end
