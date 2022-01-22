@@ -1,26 +1,27 @@
 class Api::RoomsController < ApplicationController
-
+  
   before_action :authenticate, only: [:create, :update, :destroy]
-
+  
   def index
     rooms = Room.all.order(created_at: :desc)
     render json: rooms, each_serializer: RoomSerializer
   end
-
+  
   def show
     room = Room.find(params[:id])
     render json: room, serializer: RoomSerializer
   end
-
+  
   def new
   end
-
+  
   def edit
   end
-
+  
   def create
     room = current_user.rooms.new(room_params)
     if room.save!
+      current_user.user_rooms.create(room_id: room.id)
       render json: room, status: :created, serializer: RoomSerializer
     else
       render :new
