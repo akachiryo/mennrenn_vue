@@ -21,6 +21,7 @@ class Api::RoomsController < ApplicationController
   def create
     room = current_user.rooms.new(room_params)
     if room.save!
+      current_user.user_rooms.create(room_id: room.id)
       render json: room, status: :created, serializer: RoomSerializer
     else
       render :new
