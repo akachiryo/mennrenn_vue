@@ -1,7 +1,7 @@
 class Api::RoomMessagesController < ApplicationController
 
-  def index
-    messages = RoomMessage.where(room_id: 35).order(created_at: :desc).limit(10).reverse
+  def show
+    messages = RoomMessage.where(room_id: params[:id]).order(created_at: :desc).limit(10).reverse
     render json: messages, each_serializer: RoomMessageSerializer
   end
 
