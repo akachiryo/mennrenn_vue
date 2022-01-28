@@ -23,10 +23,18 @@ class Api::RoomsController < ApplicationController
   end
   
   def create
+    # room = current_user.rooms.new(room_params)
+    # if room.save!
+    #   current_user.user_rooms.create(room_id: room.id)
+    #   render json: room, status: :created, serializer: RoomSerializer
+    # else
+    #   render :new
+    # end
     room = current_user.rooms.new(room_params)
-    if room.save!
+    room.assign_attributes(room_params)
+    if room.save_with_tags!(tag_names: tag_names)
       current_user.user_rooms.create(room_id: room.id)
-      render json: room, status: :created, serializer: RoomSerializer
+      render json: room, serializer: RoomSerializer
     else
       render :new
     end
@@ -34,7 +42,8 @@ class Api::RoomsController < ApplicationController
 
   def update
     room = current_user.rooms.find(params[:id])
-    room.update!(room_params)
+    room.assign_attributes(room_params)
+    room.save_with_tags!(tag_names: tag_names)
     render json: room, serializer: RoomSerializer
   end
   
@@ -52,5 +61,9 @@ class Api::RoomsController < ApplicationController
 
   def search_params
     params[:q]&.permit(:title, tag_ids: [])
+  end
+
+  def tag_names
+    params.dig(:room, :tag_names)
   end
 end
