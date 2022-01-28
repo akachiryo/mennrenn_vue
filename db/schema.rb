@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_24_101409) do
+ActiveRecord::Schema.define(version: 2022_01_28_115614) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2022_01_24_101409) do
     t.index ["user_id"], name: "index_room_messages_on_user_id"
   end
 
+  create_table "room_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id", "tag_id"], name: "index_room_tags_on_room_id_and_tag_id", unique: true
+    t.index ["room_id"], name: "index_room_tags_on_room_id"
+    t.index ["tag_id"], name: "index_room_tags_on_tag_id"
+  end
+
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
@@ -51,6 +61,13 @@ ActiveRecord::Schema.define(version: 2022_01_24_101409) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_full", default: false, null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "user_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -75,6 +92,8 @@ ActiveRecord::Schema.define(version: 2022_01_24_101409) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"
+  add_foreign_key "room_tags", "rooms"
+  add_foreign_key "room_tags", "tags"
   add_foreign_key "rooms", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"

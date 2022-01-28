@@ -1,10 +1,14 @@
 class Api::RoomsController < ApplicationController
   
   before_action :authenticate, only: [:create, :update, :destroy]
+  PER_PAGE = 9
   
   def index
-    rooms = Room.all.order(created_at: :desc)
-    render json: rooms, each_serializer: RoomSerializer
+    search_rooms_form = SearchRoomsForm.new(search_params)
+    rooms = search_rooms_form.search.order(created_at: :desc).page(params[:page]).per(PER_PAGE)
+    render json: rooms, each_serializer: RoomSerializer, meta: { total_pages: rooms.total_pages,
+                                                                 total_count: rooms.total_count,
+                                                                 current_page: rooms.current_page }, adapter: :json
   end
   
   def show
@@ -19,10 +23,18 @@ class Api::RoomsController < ApplicationController
   end
   
   def create
+    # room = current_user.rooms.new(room_params)
+    # if room.save!
+    #   current_user.user_rooms.create(room_id: room.id)
+    #   render json: room, status: :created, serializer: RoomSerializer
+    # else
+    #   render :new
+    # end
     room = current_user.rooms.new(room_params)
-    if room.save!
+    room.assign_attributes(room_params)
+    if room.save_with_tags!(tag_names: tag_names)
       current_user.user_rooms.create(room_id: room.id)
-      render json: room, status: :created, serializer: RoomSerializer
+      render json: room, serializer: RoomSerializer
     else
       render :new
     end
@@ -30,7 +42,8 @@ class Api::RoomsController < ApplicationController
 
   def update
     room = current_user.rooms.find(params[:id])
-    room.update!(room_params)
+    room.assign_attributes(room_params)
+    room.save_with_tags!(tag_names: tag_names)
     render json: room, serializer: RoomSerializer
   end
   
@@ -44,5 +57,13 @@ class Api::RoomsController < ApplicationController
 
   def room_params
      params.require(:room).permit(:title, :content)
+  end
+
+  def search_params
+    params[:q]&.permit(:title, tag_ids: [])
+  end
+
+  def tag_names
+    params.dig(:room, :tag_names)
   end
 end
