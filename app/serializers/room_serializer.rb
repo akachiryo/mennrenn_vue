@@ -7,4 +7,5 @@ class RoomSerializer < ActiveModel::Serializer
              :updated_at
 
   belongs_to :user
+  has_many :tags
 end
