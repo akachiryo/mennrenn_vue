@@ -1,6 +1,6 @@
 class Api::RoomsController < ApplicationController
   
-  before_action :authenticate, only: [:create, :update, :destroy]
+  before_action :authenticate, only: [:create, :update]
   PER_PAGE = 9
   
   def index
@@ -16,20 +16,7 @@ class Api::RoomsController < ApplicationController
     render json: room, serializer: RoomSerializer
   end
   
-  def new
-  end
-  
-  def edit
-  end
-  
   def create
-    # room = current_user.rooms.new(room_params)
-    # if room.save!
-    #   current_user.user_rooms.create(room_id: room.id)
-    #   render json: room, status: :created, serializer: RoomSerializer
-    # else
-    #   render :new
-    # end
     room = current_user.rooms.new(room_params)
     room.assign_attributes(room_params)
     if room.save_with_tags!(tag_names: tag_names)
@@ -48,7 +35,7 @@ class Api::RoomsController < ApplicationController
   end
   
   def destroy
-    room = current_user.rooms.find(params[:id])
+    room = Room.find(params[:id])
     room.destroy!
     render json: room, serializer: RoomSerializer
   end
