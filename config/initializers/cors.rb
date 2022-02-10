@@ -17,7 +17,11 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://localhost:8080'
+    if Rails.env.production?
+      origins 'http://52.193.150.175' # 最後の/を削除する
+    else
+      origins 'http://localhost:8080'
+    end
 
     resource '*',
       headers: :any,
