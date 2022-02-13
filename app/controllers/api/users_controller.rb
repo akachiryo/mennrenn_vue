@@ -6,6 +6,7 @@ class Api::UsersController < ApplicationController
   end
   
   def create
+    logger.debug("create入りました")
     user = User.new(user_params)
     user.save!
     render json: user, status: :created, serializer: UserSerializer
