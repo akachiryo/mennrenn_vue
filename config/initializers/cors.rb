@@ -18,7 +18,7 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     if Rails.env.production?
-      origins 'http://52.193.150.175' # 最後の/を削除する
+      origins 'http://52.193.150.175'
     else
       origins 'http://localhost:8080'
     end
