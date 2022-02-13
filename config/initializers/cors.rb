@@ -22,7 +22,6 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     else
       origins 'http://localhost:8080'
     end
-    logger.debug("cors入りました")
 
     resource '*',
       headers: :any,

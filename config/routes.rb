@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'tags/index'
   namespace :api do
-    logger.debug("router入りました")
     resources :users, only: [:show, :create, :update]
     resource :session, only: [:create, :destroy]
     resources :rooms
