@@ -38,7 +38,8 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 plugin :tmp_restart
 
 root_dir = '/home/ec2-user/mennrenn_vue'
-bind "unix://#{root_dir}/tmp/sockets/puma.sock"
+bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
+
 rails_root = Dir.pwd
 # 本番環境のみデーモン起動
 if Rails.env.production?
