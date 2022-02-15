@@ -36,7 +36,7 @@ module App
     config.middleware.use ActionDispatch::Flash
     
     if Rails.env.production?
-      Rails.application.routes.default_url_options[:host] = '10.0.2.7'
+      Rails.application.routes.default_url_options[:host] = '52.193.150.17'
     else
       Rails.application.routes.default_url_options[:host] = 'localhost:3000'
     end
