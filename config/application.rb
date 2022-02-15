@@ -34,6 +34,11 @@ module App
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.middleware.use ActionDispatch::Flash
-    Rails.application.routes.default_url_options[:host] = request.host_with_port
+    
+    if Rails.env.production?
+      Rails.application.routes.default_url_options[:host] = '10.0.2.7'
+    else
+      Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+    end
   end
 end
