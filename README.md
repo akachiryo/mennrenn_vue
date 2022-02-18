@@ -22,8 +22,9 @@
 - ページネーション機能(kaminari)
 
 ## 技術
-### [フロント]((https://github.com/akachiryo/mennrenn_vue_front))
+### フロント
 - Vue.js
+[リポジトリ](https://github.com/akachiryo/mennrenn_vue_front)
 ### API
 - Ruby on Rails 6.0.4
 ### RDB
