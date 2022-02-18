@@ -52,6 +52,7 @@
 - [ER図](https://drive.google.com/file/d/1nWENUMw2PwqOee9tHfykloUeg7Y1wXMW/view?usp=sharing)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1N5JukksgXzsvlRtoKJJcxqni-p9SH7Ef/edit?usp=sharing&ouid=111121812190906123216&rtpof=true&sd=true)
 - [詳細設計](https://docs.google.com/spreadsheets/d/1N5JukksgXzsvlRtoKJJcxqni-p9SH7Ef/edit?usp=sharing&ouid=111121812190906123216&rtpof=true&sd=true)
+※まだ追加されていない機能は随時追加していきます。
 
 ## インフラ構造図
 ![インフラ構造図](https://user-images.githubusercontent.com/85982768/136348088-da65eea3-aad1-4cd4-826a-b76fe69d5eee.png)
