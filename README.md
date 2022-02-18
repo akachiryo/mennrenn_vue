@@ -1,5 +1,5 @@
 # [MennRenn](https://mennrenn.com/) 気軽に練習相手探せるアプリ
-![MennRenn](https://user-images.githubusercontent.com/85982768/136354125-26e12710-2c20-4147-a08f-d88027a6e85a.gif)
+![profileproduct2](https://user-images.githubusercontent.com/85982768/154615526-52b626ec-77e1-4674-ab8c-15d5614466e5.gif)
 サイトURLは[こちら](https://mennrenn.com/)
 
 面接練習がしたいとき、**気軽に練習相手をマッチング**して見つけることができるアプリです。
