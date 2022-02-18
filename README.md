@@ -56,5 +56,5 @@
 - ※まだ追加されていない機能は随時追加していきます。
 
 ## インフラ構造図
-![インフラ構造図](https://user-images.githubusercontent.com/85982768/136348088-da65eea3-aad1-4cd4-826a-b76fe69d5eee.png)
-- [インフラ構造図](https://drive.google.com/file/d/1PJ7jegyAWn8Pz5R1UjNcNBBmPciJ0ihJ/view?usp=sharing)
+![インフラ構造図](https://user-images.githubusercontent.com/85982768/154618687-f6530ce9-0829-456a-894a-3f05638f9d7d.PNG)
+- [インフラ構造図](https://app.diagrams.net/#G1PJ7jegyAWn8Pz5R1UjNcNBBmPciJ0ihJ)
