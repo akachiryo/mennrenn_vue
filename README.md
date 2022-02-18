@@ -24,6 +24,7 @@
 ## 技術
 ### フロント
 - Vue.js
+- [フロントリポジトリ](https://github.com/akachiryo/mennrenn_vue_front)
 ### API
 - Ruby on Rails 6.0.4
 ### RDB
