@@ -1,4 +1,4 @@
-class Api::RoomsController < ApplicationController
+class Api::V1::RoomsController < ApplicationController
   
   before_action :authenticate, only: [:create, :update]
   PER_PAGE = 9
