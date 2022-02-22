@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Api::V1::Admin::UsersController < ApplicationController
   def index
     user = User.all
     render json: user, each_serializer: UserSerializer

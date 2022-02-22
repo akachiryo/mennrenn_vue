@@ -1,4 +1,4 @@
-class Api::UserRoomsController < ApplicationController
+class Api::V1::UserRoomsController < ApplicationController
 
   def index
       user_rooms = current_user.user_rooms.reverse
