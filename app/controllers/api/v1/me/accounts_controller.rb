@@ -1,4 +1,4 @@
-class Api::Me::AccountsController < ApplicationController
+class Api::V1::Me::AccountsController < ApplicationController
   before_action :authenticate
 
   def update

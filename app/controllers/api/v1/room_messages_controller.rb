@@ -1,4 +1,4 @@
-class Api::RoomMessagesController < ApplicationController
+class Api::V1::RoomMessagesController < ApplicationController
 
   def show
     messages = RoomMessage.where(room_id: params[:id]).order(created_at: :desc).limit(10).reverse

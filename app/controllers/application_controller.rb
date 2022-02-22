@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-  #  protect_from_forgery with: :null_session
   class AuthenticationError < StandardError; end
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
