@@ -3,4 +3,12 @@ class Api::V1::TagsController < ApplicationController
     tags = Tag.all
     render json: tags, each_serializer: TagSerializer, adapter: :json
   end
+
+  def destroy
+    tag = Tag.find(params[:id])
+    tag.destroy!
+    
+    tags = Tag.all
+    render json: tags, each_serializer: TagSerializer
+  end
 end

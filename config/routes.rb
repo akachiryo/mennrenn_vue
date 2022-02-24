@@ -4,14 +4,14 @@ Rails.application.routes.draw do
       resources :users, only: [:show, :create, :update]
       resource :session, only: [:create, :destroy]
       resources :rooms
-      resources :tags, only: [:index]
-      resources :user_rooms, only: [:index, :create, :destroy]
+      resources :tags, only: [:index, :destroy]
+      resources :user_rooms, only: [:index, :show, :create, :destroy]
       resources :room_messages, only: [:show, :create, :destroy]
       namespace :me do
         resource :account, only: [:update]
       end
       namespace :admin do
-        resources :users
+        resources :users, only: [:index, :show, :destroy]
       end
     end
   end
