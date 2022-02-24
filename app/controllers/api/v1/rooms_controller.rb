@@ -37,7 +37,6 @@ class Api::V1::RoomsController < ApplicationController
   def destroy
     room = Room.find(params[:id])
     room.destroy!
-    render json: room, serializer: RoomSerializer
   end
   
   private
