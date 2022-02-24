@@ -1,23 +1,33 @@
 class Api::V1::UserRoomsController < ApplicationController
 
   def index
+      user_rooms = UserRoom.all.reverse
+      render json: user_rooms, each_serializer: UserRoomSerializer
+    end
+    
+    def show
       user_rooms = current_user.user_rooms.reverse
       render json: user_rooms, each_serializer: UserRoomSerializer
-  end
-
-  def create
-    if current_user.user_rooms.where(room_id: params[:user_room][:room_id]).empty?
-      user_room = current_user.user_rooms.new(user_room_params)
-      if user_room.save!
-        room = Room.where(id: user_room.room_id)
-        room.update(is_full: true)
-      else
-        redirect_to request.referer
+    end
+    
+    def create
+      if current_user.user_rooms.where(room_id: params[:user_room][:room_id]).empty?
+        user_room = current_user.user_rooms.new(user_room_params)
+        if user_room.save!
+          room = Room.where(id: user_room.room_id)
+          room.update(is_full: true)
+        else
+          redirect_to request.referer
+        end
       end
     end
-  end
-
-  def destroy
+    
+    def destroy
+      user_room = UserRoom.find(params[:id])
+      user_room.destroy!
+      
+      user_rooms = UserRoom.all.reverse
+      render json: user_rooms, each_serializer: UserRoomSerializer
   end
 
   private

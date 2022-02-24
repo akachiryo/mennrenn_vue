@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resource :session, only: [:create, :destroy]
       resources :rooms
       resources :tags, only: [:index, :destroy]
-      resources :user_rooms, only: [:index, :create, :destroy]
+      resources :user_rooms, only: [:index, :show, :create, :destroy]
       resources :room_messages, only: [:show, :create, :destroy]
       namespace :me do
         resource :account, only: [:update]
