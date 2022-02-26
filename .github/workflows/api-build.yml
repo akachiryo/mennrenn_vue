@@ -20,6 +20,6 @@ jobs:
         git pull origin main &&
         ~/.rbenv/shims/bundle install &&
         ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
-        if [[ -e tmp/sockets/puma.sock ]];then sudo kill $(cat tmp/sockets/puma.sock); echo kill puma process;fi &&
+        ~/.rbenv/shims/bundle exec pumactl -F config/puma/production.rb stop &&
         if [[ -e tmp/pids/server.pid ]];then sudo rm /home/ec2-user/mennrenn_vue/tmp/pids/server.pid; echo kill puma process;fi &&
         ~/.rbenv/shims/rails s -e production'
