@@ -20,5 +20,5 @@ jobs:
         git pull origin main &&
         ~/.rbenv/shims/bundle install &&
         ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
-        bundle exec pumactl -F config/puma/production.rb stop &&
+        ~/.rbenv/shims/bundle exec pumactl -F config/puma/production.rb stop &&
         ~/.rbenv/shims/rails s -e production'
