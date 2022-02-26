@@ -19,6 +19,5 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd mennrenn_vue &&
         git pull origin main &&
         ~/.rbenv/shims/bundle install --path vendor/bundle --without test development &&
-        ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
         ~/.rbenv/shims/bundle exec pumactl -F config/puma/production.rb stop &&
         ~/.rbenv/shims/rails s -e production'
