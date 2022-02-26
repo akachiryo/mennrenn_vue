@@ -20,6 +20,6 @@ jobs:
         git pull origin main &&
         ~/.rbenv/shims/bundle install --path vendor/bundle --without test development &&
         ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
-        sudo rm /home/ec2-user/mennrenn_vue/tmp/pids/server.pid && sudo touch /home/ec2-user/mennrenn_vue/tmp/pids/server.pid &&
-         ~/.rbenv/shims/bundle exec pumactl -F config/puma/production.rb stop &&
+        sudo rm tmp/pids/server.pid && sudo touch tmp/pids/server.pid &&
+        ~/.rbenv/shims/bundle exec pumactl -F config/puma/production.rb stop &&
         ~/.rbenv/shims/rails s -e production'
