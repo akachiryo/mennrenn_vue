@@ -23,7 +23,7 @@
                 <video id="my-video" muted="true" width="340px" autoplay playsinline controls />
               </v-card-text>
               <v-card-actions>
-                <v-row>
+                <!-- <v-row>
                   <v-col>
                     <v-select
                       v-model="selectedAudio"
@@ -49,7 +49,7 @@
                       @change="onChange"
                     />
                   </v-col>
-                </v-row>
+                </v-row> -->
               </v-card-actions>
             </v-card>
           </v-col>
@@ -120,30 +120,30 @@ export default {
   
     });
 
-    this.deviceInfos = await navigator.mediaDevices.enumerateDevices();
-    this.deviceInfos
-      .filter(deviceInfo => deviceInfo.kind === 'audioinput')
-      .map(audio => this.audios.push({text: audio.label || `Microphone ${this.audios.length + 1}`, value: audio.deviceId}));
-    this.deviceInfos
-      .filter(deviceInfo => deviceInfo.kind === 'videoinput')
-      .map(video => this.videos.push({text: video.label || `Camera  ${this.videos.length - 1}`, value: video.deviceId}));
+    // this.deviceInfos = await navigator.mediaDevices.enumerateDevices();
+    // this.deviceInfos
+    //   .filter(deviceInfo => deviceInfo.kind === 'audioinput')
+    //   .map(audio => this.audios.push({text: audio.label || `Microphone ${this.audios.length + 1}`, value: audio.deviceId}));
+    // this.deviceInfos
+    //   .filter(deviceInfo => deviceInfo.kind === 'videoinput')
+    //   .map(video => this.videos.push({text: video.label || `Camera  ${this.videos.length - 1}`, value: video.deviceId}));
 
     // カメラ映像取得
-    // navigator.mediaDevices
-    //   .getUserMedia({ video: true, audio: true })
-    //   .then((stream) => {
-    //     // 成功時にvideo要素にカメラ映像をセットし、再生
-    //     const videoElm = document.getElementById('my-video');
-    //     videoElm.srcObject = stream;
-    //     videoElm.play();
-    //     // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
-    //     this.localStream = stream;
-    //   })
-    //   .catch((error) => {
-    //     // 失敗時にはエラーログを出力
-    //     console.error('mediaDevice.getUserMedia() error:', error);
-    //     return;
-    //   });
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then((stream) => {
+        // 成功時にvideo要素にカメラ映像をセットし、再生
+        const videoElm = document.getElementById('my-video');
+        videoElm.srcObject = stream;
+        videoElm.play();
+        // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
+        this.localStream = stream;
+      })
+      .catch((error) => {
+        // 失敗時にはエラーログを出力
+        console.error('mediaDevice.getUserMedia() error:', error);
+        return;
+      });
   },
   methods: {
     callByName() {
