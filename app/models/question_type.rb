@@ -1,4 +1,4 @@
 class QuestionType < ApplicationRecord
-  has_many :question_types, dependent: :destroy
-  validates :name, presence: true, uniqueness: true
+  has_many :questions, dependent: :destroy
+  validates :content, presence: true, uniqueness: true
 end

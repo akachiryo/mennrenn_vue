@@ -1,22 +1,13 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'questions/index'
-      get 'questions/create'
-      get 'questions/destroy'
-    end
-  end
-  get 'question_types/create'
-  get 'question_types/destroy'
-  namespace :api do
-    namespace :v1 do
       resources :users, only: [:show, :create, :update]
       resource :session, only: [:create, :destroy]
       resources :rooms
       resources :tags, only: [:index, :destroy]
       resources :user_rooms, only: [:index, :show, :create, :destroy]
       resources :room_messages, only: [:show, :create, :destroy]
-      resources :question_types, only: [:create, :destroy]
+      resources :question_types, only: [:index, :create, :destroy]
       resources :questions, only: [:index, :create, :destroy]
       namespace :me do
         resource :account, only: [:update]
