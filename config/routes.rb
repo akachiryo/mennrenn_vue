@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :tags, only: [:index, :destroy]
       resources :user_rooms, only: [:index, :show, :create, :destroy]
       resources :room_messages, only: [:show, :create, :destroy]
+      resources :question_types, only: [:index, :create, :destroy]
+      resources :questions, only: [:index, :create, :destroy]
       namespace :me do
         resource :account, only: [:update]
       end
