@@ -11,7 +11,7 @@ bind "unix://#{root_dir}/tmp/sockets/puma.sock"
 
 environment 'production'
 
-pidfile File.expand_path('tmp/pids/server.pid')
+pidfile File.expand_path('tmp/pids/puma.pid')
 
 stdout_redirect File.expand_path('log/puma_access.log'), File.expand_path('log/puma_error.log'), true
 
